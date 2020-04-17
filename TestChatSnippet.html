@@ -1,58 +1,287 @@
-
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"></meta>
-    </head>
-    <body>
-        <h1>Live Chat - Test Page</h1>
-        <br />
-        Click the button to start a chat.
-        <br />
+<!DOCTYPE html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"></meta>
+	<link rel="stylesheet" type="text/css" href="//www.static-immobilienscout24.de/fro/core/4.4.0/css/core.min.css">
+</head>
+<body>
+	<h1>Live Chat - Test Page</h1>
+	<br />
+	Click the button to start a chat.
+	<br />
 
 <style type='text/css'>
+.embeddedServiceSidebarHeader h2 {
+	margin:0
+}
+/* variables*/
+:root {
+	--black-color: #000;
+	--darkgrey-color: #333;
+	--grey-color: #757575;
+	--lightgrey-color: #D6D6D6;
+	--white-color: #fff;
+	--brand-color: #00ffd0;
+	--darkbrand-color: #00d9b1;
+	--error-color: #e74b3c;
+
+	--btn-font: var(--darkgrey-color);
+	--btn-font-size: 16px;
+	--btn-height: 40px;
+	--primary-btn-bg: var(--brand-color);
+	--primary-btn-border: var(--brand-color);
+	--primary-btn-active: #00d9b1;
+	--secondary-btn-bg: var(--white-color);
+	--secondary-btn-border: var(--darkgrey-color);
+	--secondary-btn-active: #eaeaea;
+
+	--font-color: var(--darkgrey-color);
+	--border-color: var(--darkgrey-color);
+	--bg-color: var(--lightgrey-color);
+	--header-bg: var(--brand-color);
+
+	--avatar-bg: var(--darkgrey-color);
+	--avatar-font: var(--white-color);
+}
+
+.embeddedServiceSidebar .dockableContainer {
+	box-shadow: none !important;
+    box-sizing: content-box;
+    border: 1px solid var(--brand-color);
+}
+/* Header */
+.embeddedServiceSidebarHeader {
+	background-color: var(--header-bg);
+}
+.embeddedServiceLiveAgentStateChatAvatar .avatar {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	background-color: var(--avatar-bg);
+}
+.embeddedServiceIcon svg {
+	fill: var(--font-color);
+}
+.embeddedServiceLiveAgentStateChatHeaderOption .embeddedServiceIcon {
+	border-color: var(--font-color);
+}
+.embeddedServiceSidebarHeader .headerText,
+.embeddedServiceSidebarMinimizedDefaultUI .minimizedText,
+.embeddedServiceSidebarHeader .headerButton,
+.embeddedServiceLiveAgentStateChatHeaderOption,
+.embeddedServiceLiveAgentStateChatHeader .message {
+	color: var(--font-color);
+}
+.embeddedServiceSidebarHeader .headerChevron {
+	border-top-color: var(--font-color);
+}
+.embeddedServiceSidebarForm .backgroundImgColorMask {
+	background: none;
+}
+/* Form elements */
+.embeddedServiceSidebarFormField .slds-style-inputtext, 
+.embeddedServiceSidebarFormField .slds-style-select {
+	border-color: #adadad;
+	height: var(--btn-height);
+}
+.embeddedServiceSidebarFormField .slds-style-inputtext:focus, 
+.embeddedServiceSidebarFormField .slds-style-select:focus {
+	border-color: var(--border-color);
+}
+.embeddedServiceSidebarFormField .uiInput .uiLabel-left {
+	font-size: .85em;
+    font-weight: bold;
+    margin-left: 0;
+}
+.embeddedServiceSidebarFormField .uiInput .required {
+	left: auto;
+	color: var(--font-color);
+	padding-left: 2px;
+}
+.embeddedServiceHelpButton .helpButton .uiButton {
+	background-color: var(--primary-btn-bg);
+	color: var(--font-color);
+	text-decoration: none;
+}
+.embeddedServiceSidebarButton {
+	background: var(--primary-btn-bg);
+	border-radius: 8px;
+	text-decoration: none !important;
+	height: var(--btn-height) !important;
+}
+.embeddedServiceSidebarButton.uiButton--inverse {
+	border: 1px solid var(--secondary-btn-border);
+}
+.embeddedServiceSidebarButton.uiButton--inverse:hover,
+.embeddedServiceSidebarButton.uiButton--inverse:focus{
+	background: var(--secondary-btn-active) !important;
+}
+.embeddedServiceSidebarButton:hover,
+.embeddedServiceSidebarButton:focus {
+	background: var(--primary-btn-active) !important;
+}
+.embeddedServiceSidebarButton .label {
+	color: var(--btn-font) !important;
+	font-weight: 600;
+	font-size: var(--btn-font-size);
+}
+
+.embeddedServiceLiveAgentStateChatInputFooter .footerMenuWrapper .footer-menu-items a {
+    border-radius: 8px;
+	border: 1px solid var(--border-color) !important;
+    color: var(--btn-font) !important;
+    margin: 4px;
+    box-shadow: none !important;
+    justify-content: center !important;
+    padding-left: 0 !important;
+    text-decoration: none !important;
+    font-weight: 600;
+    font-size: var(--btn-font-size);
+}
+.embeddedServiceLiveAgentStateChatButtonItem {
+	box-shadow: none;
+}
+.embeddedServiceLiveAgentStateChatItem.chatMessage button:hover,
+.embeddedServiceLiveAgentStateChatItem.chatMessage button:hover:focus {
+	opacity: 1;
+	background-color: var(--lightgrey-color) !important;
+}
+.embeddedServiceLiveAgentStateChat .messageArea:focus {
+	border: none;
+}
+
+/* Background image prechat */
+.embeddedServiceSidebarForm .backgroundImg {
+	background-size: 52px;
+	height: 115px;
+}
+.embeddedServiceSidebarForm .backgroundImg:before,
+.embeddedServiceSidebarForm .backgroundImg:after {
+    position: absolute;
+    left: 0;
+    font-size: 12px;
+}
+.embeddedServiceSidebarForm .backgroundImg:before {
+    content: "Herzlich Willkommen bei ImmoScout24!";
+    top: 10px;
+    width: 100%;
+}
+.embeddedServiceSidebarForm .backgroundImg:after {
+    content: "Bitte geben Sie vorab folgende Informationen ein, damit wir Sie persönlich ansprechen können";
+    bottom: -5px;
+    padding: 0 15px;
+}
+/*live chat*/ 
+.embeddedServiceSidebarHeader .content .chatOptions.fade {
+    display: none;
+}
+.embeddedServiceLiveAgentStateChatHeader .content {
+	height: 100px;
+}
+/* Background image waiting */
+.embeddedServiceLiveAgentStateWaitingHeader .content {
+	background: #fff;
+    color: #333;
+}
+.embeddedServiceLiveAgentStateWaitingHeader .waitingImage {
+	background-size: 52px;
+	height: 52px;;
+}
+.embeddedServiceSidebarFormField .uiInputSelect:after {
+	height: 6px;
+    width: 6px;
+    transform: rotate(45deg);
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    border-left: none;
+    border-top: none;
+    padding: 0
+}
+@media only screen and (min-width: 48em) {
+	.embeddedServiceHelpButton .helpButton {
+		bottom: 12px;
+	}
 	.embeddedServiceHelpButton .helpButton .uiButton {
-		background-color: #D6D6D6;
-		font-family: "Make It Sans", sans-serif;
+		border-radius: 23px;
 	}
-	.embeddedServiceHelpButton .helpButton .uiButton:focus {
-		outline: 1px solid #D6D6D6;
-	}
+}
+
+.embeddedServiceSidebarMinimizedDefaultUI .minimizedImage img, 
+.embeddedServiceSidebarMinimizedDefaultUI .minimizedImage .uiImage {
+	width: 40px;
+    height: auto;
+    border-radius: 0;
+}
+.embeddedServiceSidebarMinimizedDefaultUI,
+.embeddedServiceHelpButton .helpButton .uiButton {
+	box-shadow: none;
+}
+.embeddedServiceHelpButton .helpButton .helpButtonEnabled:hover::before,
+.embeddedServiceHelpButton .helpButton .helpButtonEnabled:focus::before {
+	border-radius: 23px;
+}
+
 </style>
 
 <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
 <script type='text/javascript'>
-	var initESW = function(gslbBaseURL) {
-		embedded_svc.settings.displayHelpButton = true; //Or false
-		embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
 
-		//embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
-		//embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+var initESW = function(gslbBaseURL) {
+	embedded_svc.settings.displayHelpButton = true; //Or false
+	embedded_svc.settings.language = 'de'; //For example, enter 'en' or 'en-US'
 
-		//embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
-		//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+	// Prechat
+	embedded_svc.settings.avatarImgURL = "https://www.sandbox-immobilienscout24.de/suchagent/dist/resources/img/components/profileList/nobodyonePerson.png"
+	embedded_svc.settings.chatbotAvatarImgURL = "https://i.pinimg.com/474x/fd/a1/3b/fda13b9d6d88f25a9d968901d319216a.jpg";
+	embedded_svc.settings.prechatBackgroundImgURL = "https://www.static-immobilienscout24.de/statpic/chat/2b444915df63b1b98674693de4a2b2d4_IS24_Messenger.svg";
+	embedded_svc.settings.waitingStateBackgroundImgURL = 'https://www.static-immobilienscout24.de/statpic/chat/2b444915df63b1b98674693de4a2b2d4_IS24_Messenger.svg';
 
-		// Settings for Chat
-		//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
-			// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
-			// Returns a valid button ID.
-		//};
-		//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
-		//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
-		//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
+	embedded_svc.settings.smallCompanyLogoImgURL = './ImmoScout24_primary_texture_white.png';
 
-		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
-		embedded_svc.settings.entryFeature = 'LiveAgent';
+	//https://www.static-immobilienscout24.de/statpic/chat/9c7a3ea29442daa139ac391171334dc1_IS24_Live.svg
+
+	//embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
+	//embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+
+	//embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
+	//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+
+	// Settings for Chat
+	//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+		// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+		// Returns a valid button ID.
+	//};
+	//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
+	//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+	//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
+
+	embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+	embedded_svc.settings.entryFeature = 'LiveAgent';
+	
+	embedded_svc.settings.extraPrechatFormDetails = [{
+		      "label":"Vorname",  
+		      "transcriptFields": ["Provided_FirstName__c"]
+		    },{
+		      "label":"Nachname", 
+		      "transcriptFields": ["Provided_LastName__c"]
+		    },{
+		      "label":"E-Mail", 
+		      "transcriptFields": ["Provided_Email__c"]
+		    },{
+		      "label":"Kundennummer", 
+		      "transcriptFields": ["Provided_ScoutID__c"],
+		    }];
 
 		embedded_svc.init(
-			'https://immobilienscout24--is24full.my.salesforce.com',
-			'https://is24full-immobilienscout24.cs82.force.com/liveAgent',
+			'https://immobilienscout24.my.salesforce.com',
+			'https://immobilienscout24.secure.force.com/liveAgentSetupFlow',
 			gslbBaseURL,
-			'00D3E0000009nR4',
-			'StandardChat',
+			'00D20000000LpzO',
+			'Standard_Chat',
 			{
-				baseLiveAgentContentURL: 'https://c.la1-c1cs-par.salesforceliveagent.com/content',
-				deploymentId: '5723E0000008OvQ',
-				buttonId: '5733E0000008P3F',
-				baseLiveAgentURL: 'https://d.la1-c1cs-par.salesforceliveagent.com/chat',
+				baseLiveAgentContentURL: 'https://c.la2-c2-cdg.salesforceliveagent.com/content',
+				deploymentId: '5721r0000008gM5',
+				buttonId: '5731r0000008gH8',
+				baseLiveAgentURL: 'https://d.la2-c2-cdg.salesforceliveagent.com/chat',
 				eswLiveAgentDevName: 'Standard_Chat',
 				isOfflineSupportEnabled: true
 			}
@@ -61,7 +290,7 @@
 
 	if (!window.embedded_svc) {
 		var s = document.createElement('script');
-		s.setAttribute('src', 'https://immobilienscout24--is24full.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+		s.setAttribute('src', 'https://immobilienscout24.my.salesforce.com/embeddedservice/5.0/esw.min.js');
 		s.onload = function() {
 			initESW(null);
 		};
@@ -72,3 +301,4 @@
 </script>
 
 </body>
+</html>
