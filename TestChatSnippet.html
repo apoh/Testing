@@ -10,9 +10,6 @@
 	<br />
 
 <style type='text/css'>
-.embeddedServiceSidebarHeader h2 {
-	margin:0
-}
 /* variables*/
 :root {
 	--black-color: #000;
@@ -36,11 +33,7 @@
 
 	--font-color: var(--darkgrey-color);
 	--border-color: var(--darkgrey-color);
-	--bg-color: var(--lightgrey-color);
 	--header-bg: var(--brand-color);
-
-	--avatar-bg: var(--darkgrey-color);
-	--avatar-font: var(--white-color);
 }
 
 .embeddedServiceSidebar .dockableContainer {
@@ -53,10 +46,14 @@
 	background-color: var(--header-bg);
 }
 .embeddedServiceLiveAgentStateChatAvatar .avatar {
-	display: flex;
-    justify-content: center;
-    align-items: center;
-	background-color: var(--avatar-bg);
+	width: 68px;
+    height: 54px;
+    border-radius: 0;
+}
+.embeddedServiceLiveAgentStateChatItem .isLightningOutContext .avatar {
+	border-radius: 0;
+    width: 30px;
+    height: 24px;
 }
 .embeddedServiceIcon svg {
 	fill: var(--font-color);
@@ -76,6 +73,7 @@
 }
 .embeddedServiceSidebarForm .backgroundImgColorMask {
 	background: none;
+	background-image: url(./backround.svg);
 }
 /* Form elements */
 .embeddedServiceSidebarFormField .slds-style-inputtext, 
@@ -154,38 +152,49 @@
 	background-size: 52px;
 	height: 115px;
 }
-.embeddedServiceSidebarForm .backgroundImg:before,
-.embeddedServiceSidebarForm .backgroundImg:after {
+.embeddedServiceSidebarForm .backgroundImg:before {
     position: absolute;
     left: 0;
     font-size: 12px;
-}
-.embeddedServiceSidebarForm .backgroundImg:before {
     content: "Herzlich Willkommen bei ImmoScout24!";
     top: 10px;
     width: 100%;
-}
-.embeddedServiceSidebarForm .backgroundImg:after {
-    content: "Bitte geben Sie vorab folgende Informationen ein, damit wir Sie persönlich ansprechen können";
-    bottom: -5px;
-    padding: 0 15px;
 }
 /*live chat*/ 
 .embeddedServiceSidebarHeader .content .chatOptions.fade {
     display: none;
 }
-.embeddedServiceLiveAgentStateChatHeader .content {
-	height: 100px;
+.embeddedServiceLiveAgentStateChatHeader .content:after,
+.embeddedServiceSidebarForm .backgroundImg:after,
+.embeddedServiceLiveAgentStateWaitingHeader .waitingImage:after {
+    content: "";
+	background-image: url(./background.svg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 64px;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    left: 0;
 }
 /* Background image waiting */
-.embeddedServiceLiveAgentStateWaitingHeader .content {
+.embeddedServiceLiveAgentStateWaitingHeader .content,
+.embeddedServiceLiveAgentStateChatHeader .content  {
+	height: 125px;
 	background: #fff;
     color: #333;
 }
 .embeddedServiceLiveAgentStateWaitingHeader .waitingImage {
 	background-size: 52px;
-	height: 52px;;
+	height: 52px;
+	margin: 2px auto;
 }
+.embeddedServiceLiveAgentStateWaitingHeader .waitingMessage,
+.embeddedServiceLiveAgentStateWaitingHeader .waitingGreeting {
+	font-size: 12px !important;
+}
+/**/
+
 .embeddedServiceSidebarFormField .uiInputSelect:after {
 	height: 6px;
     width: 6px;
@@ -227,49 +236,43 @@
 
 var initESW = function(gslbBaseURL) {
 	embedded_svc.settings.displayHelpButton = true; //Or false
-	embedded_svc.settings.language = 'de'; //For example, enter 'en' or 'en-US'
+	embedded_svc.settings.language = 'en'; //For example, enter 'en' or 'en-US'
 
 	// Prechat
-	embedded_svc.settings.avatarImgURL = "https://www.sandbox-immobilienscout24.de/suchagent/dist/resources/img/components/profileList/nobodyonePerson.png"
-	embedded_svc.settings.chatbotAvatarImgURL = "https://i.pinimg.com/474x/fd/a1/3b/fda13b9d6d88f25a9d968901d319216a.jpg";
+	embedded_svc.settings.avatarImgURL = "https://www.static-immobilienscout24.de/statpic/chat/9c7a3ea29442daa139ac391171334dc1_IS24_Live.svg"
+	embedded_svc.settings.chatbotAvatarImgURL = "https://www.static-immobilienscout24.de/statpic/chat/9c7a3ea29442daa139ac391171334dc1_IS24_Live.svg";
 	embedded_svc.settings.prechatBackgroundImgURL = "https://www.static-immobilienscout24.de/statpic/chat/2b444915df63b1b98674693de4a2b2d4_IS24_Messenger.svg";
 	embedded_svc.settings.waitingStateBackgroundImgURL = 'https://www.static-immobilienscout24.de/statpic/chat/2b444915df63b1b98674693de4a2b2d4_IS24_Messenger.svg';
 
 	embedded_svc.settings.smallCompanyLogoImgURL = './ImmoScout24_primary_texture_white.png';
+	embedded_svc.settings.externalStyles = 
+	embedded_svc.settings.widgetFontSize = '12px' 
 
 	//https://www.static-immobilienscout24.de/statpic/chat/9c7a3ea29442daa139ac391171334dc1_IS24_Live.svg
 
+	// Widget Labels
 	embedded_svc.settings.defaultMinimizedText = 'Kontaktiere uns'; //(Defaults to Chat with an Expert)
 	embedded_svc.settings.disabledMinimizedText = 'Agenten Offline'; //(Defaults to Agent Offline)
-
 	embedded_svc.settings.loadingText = 'Lädt'; //(Defaults to Loading)
-	//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
-
-	// Settings for Chat
-	//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
-		// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
-		// Returns a valid button ID.
-	//};
-	//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
-	//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
 	embedded_svc.settings.offlineSupportMinimizedText = 'Kontaktiere uns'; //(Defaults to Contact Us)
 
 	embedded_svc.settings.enabledFeatures = ['LiveAgent'];
 	embedded_svc.settings.entryFeature = 'LiveAgent';
 
+	// Parameters saved from pre-chat form into chat transcript
 	embedded_svc.settings.extraPrechatFormDetails = [{
-              "label":"Vorname",  
-              "transcriptFields": ["Provided_FirstName__c"]
-            },{
-              "label":"Nachname", 
-              "transcriptFields": ["Provided_LastName__c"]
-            },{
-              "label":"E-Mail", 
-              "transcriptFields": ["Provided_Email__c"]
-            },{
-              "label":"Kundennummer", 
-              "transcriptFields": ["Provided_ScoutID__c"],
-            }];
+	      "label":"Vorname",  
+	      "transcriptFields": ["Provided_FirstName__c"]
+	    },{
+	      "label":"Nachname", 
+	      "transcriptFields": ["Provided_LastName__c"]
+	    },{
+	      "label":"E-Mail", 
+	      "transcriptFields": ["Provided_Email__c"]
+	    },{
+	      "label":"Kundennummer", 
+	      "transcriptFields": ["Provided_ScoutID__c"],
+	    }];
 
         embedded_svc.init(
             'https://immobilienscout24.my.salesforce.com',
